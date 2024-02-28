@@ -1,6 +1,15 @@
 import { AuthOptions } from "next-auth";
 import  CredentialsProvider  from "next-auth/providers/credentials";
+import {connect} from '@/database/mongo.config'
+import { User } from "@/model/User";
+
+
 export const authOptions:AuthOptions = {
+
+    pages: {
+        signIn: "/login"
+    },
+
     providers:[
         CredentialsProvider({
             name:"Next Auth",
@@ -16,12 +25,8 @@ export const authOptions:AuthOptions = {
             },
 
             async authorize(credentials, req){
-             
-                const user = {
-                    id: "1",
-                    name: "chetan",
-                    email: credentials?.email
-                };
+                connect();
+                const user = await User.findOne({email: credentials?.email});
 
                 if(user){
                     return user;
@@ -29,7 +34,6 @@ export const authOptions:AuthOptions = {
                 else{
                     return null;
                 }
-
             }
         })
     ]
