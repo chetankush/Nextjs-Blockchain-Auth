@@ -10,7 +10,7 @@ const userSchema = new Schema({
     required: [true, "Email field is required."],
     type: Schema.Types.String,
     unique: true,
-    trim: true,
+   
   },
   password: {
     required: [true, 'Please enter password here'],

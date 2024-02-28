@@ -3,7 +3,7 @@ import SignOutButton from '@/components/signOutButton'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/options'
 import { redirect } from 'next/navigation'
-
+import Image from 'next/image'
 
 
 const menuItems = [
@@ -28,20 +28,14 @@ const menuItems = [
 const LandinngPageTwo = async () => {
 
 
-
-
-
-
-
-
-
   const session = await getServerSession(authOptions)
 
   if (!session) {
     redirect("/login")
   }
 
-  const { name } = session.user;
+  const name = session.user?.name;
+
 
   const formattedData = JSON.stringify(session, null, 2);
   return (
@@ -50,7 +44,10 @@ const LandinngPageTwo = async () => {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
           <div className="inline-flex items-center space-x-2">
             <span className='w-10'>
-              <img src="/account_abs.png" alt="account_abs_logo" />
+              <Image src="/account_abs.png" alt="account_abs_logo" 
+             width={60}
+             height={60}
+              />
             </span>
             <span className="font-bold">Eth solutions</span>
           </div>
@@ -110,10 +107,12 @@ const LandinngPageTwo = async () => {
             </div>
           </div>
           <div className="rounded-lg bg-gray-200 p-4">
-            <img
+            <Image
               className="aspect-[3/2] w-full rounded-lg bg-gray-50 object-cover lg:aspect-auto lg:h-[500px] lg:object-center"
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
-              alt=""
+              alt="img"
+              width={500}
+              height={500}
             />
           </div>
         </div>
@@ -195,7 +194,7 @@ const LandinngPageTwo = async () => {
             <div>
               <h2 className="text-xl font-semibold text-black">How do I get started with blockchain development?</h2>
               <p className="mt-6 text-sm leading-6 tracking-wide text-gray-500">
-                Whether you're new to blockchain or looking to enhance your existing project, our experts can guide you through the process of getting started with blockchain development.
+                Whether you are new to blockchain or looking to enhance your existing project, our experts can guide you through the process of getting started with blockchain development.
               </p>
             </div>
             {/* FAQ 2 */}
@@ -221,7 +220,7 @@ const LandinngPageTwo = async () => {
             </div>
           </div>
           <p className="mt-10 text-center text-gray-600">
-            Can't find the information you need?{' '}
+            Can not find the information you need?
             <a href="#" title="" className="black font-semibold hover:underline">
               Contact us
             </a>
@@ -408,10 +407,13 @@ const LandinngPageTwo = async () => {
             </p>
           </div>
           <div className="mt-10 w-full md:w-2/3 lg:mt-0 lg:w-1/2">
-            <img
+            <Image
               className="h-full w-full rounded-md object-cover"
               src="https://images.unsplash.com/photo-1541560052-77ec1bbc09f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5ld3NsZXR0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
               alt="Blockchain Newsletter"
+              width={600}
+              height={600}
+
             />
           </div>
         </div>
