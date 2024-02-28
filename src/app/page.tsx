@@ -1,5 +1,6 @@
-import React from 'react'
+import React,{useState} from 'react'
 import SignOutButton from '@/components/signOutButton'
+import MetaMaskLogin from '@/components/metaMaskLogin'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/options'
 import { redirect } from 'next/navigation'
@@ -38,6 +39,7 @@ const LandinngPageTwo = async () => {
 
 
   const formattedData = JSON.stringify(session, null, 2);
+      
   return (
     <div className="w-full">
       <header className="relative w-full border-b bg-white pb-4 mt-4">
@@ -51,8 +53,8 @@ const LandinngPageTwo = async () => {
             </span>
             <span className="font-bold">Eth solutions</span>
           </div>
-          <div className="hidden lg:block">
-            <ul className="inline-flex space-x-8">
+          <div className="">
+            <ul className="inline-flex space-x-8 pl-20">
               {menuItems.map((item) => (
                 <li key={item.name}>
                   <a
@@ -65,9 +67,16 @@ const LandinngPageTwo = async () => {
               ))}
             </ul>
           </div>
-          <div className="hidden lg:block">
+<div className="flex justify-between">
+
+          <div className="">
             <SignOutButton />
           </div>
+          <div className="pl-2">
+            <MetaMaskLogin/>
+          </div>
+
+</div>
           <div className="lg:hidden">
             <div className="h-6 w-6 cursor-pointer" ></div>
           </div>
